@@ -130,4 +130,6 @@ cuisine_summary %>%
 ```
 
 ### About these data
-Each point or count in this dashboard represents an inspection record after removing duplicate violation rows. Inspection scores are lower for better results; grades A, B, and C are shown. The cuisine comparison includes the 15 most frequently inspected cuisine categories among categories with at least 100 inspections.
+Each point or count in this dashboard represents an inspection record after removing duplicate violation rows. 
+Inspection scores are lower for better results; grades A, B, and C are shown. 
+The cuisine comparison includes the 15 most frequently inspected cuisine categories among categories with at least 100 inspections.
