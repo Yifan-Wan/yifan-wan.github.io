@@ -24,3 +24,7 @@ clinical decision-making, and healthcare policies.
 [Academic and professional experience](about.html) |
 [GitHub](https://github.com/Yifan-Wan) |
 [Email](mailto:yw4657@cumc.columbia.edu) 
+
+## Problem 2
+
+[Interactive dashboard](dashboard.html)
