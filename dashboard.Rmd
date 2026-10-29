@@ -1,0 +1,121 @@
+---
+title: "NYC Restaurant Inspection Dashboard"
+author: "Yifan Wan"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+```{r data}
+data("rest_inspec")
+inspection_data = rest_inspec %>%
+  rename(borough = boro) %>%
+  filter(
+    grade %in% c("A", "B", "C"),
+    !borough %in% c("Missing", "0"),
+    !is.na(camis),
+    !is.na(inspection_date)
+  ) %>%
+  mutate(
+    borough = str_to_title(borough),
+    score = as.numeric(score)
+  ) %>%
+  distinct(camis, inspection_date, grade, score, .keep_all = TRUE) %>%
+  filter(!is.na(score))
+cuisine_summary = inspection_data %>%
+  filter(!is.na(cuisine_description), cuisine_description != "") %>%
+  group_by(cuisine_description) %>%
+  summarize(
+    n_inspections = n(),
+    pct_grade_a = mean(grade == "A") * 100,
+    median_score = median(score),
+    .groups = "drop"
+  ) %>%
+  filter(n_inspections >= 100) %>%
+  slice_max(n_inspections, n = 15, with_ties = FALSE)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+### Inspection scores by borough
+
+```{r score-boxplot}
+inspection_data %>%
+  mutate(borough = fct_reorder(borough, score, .fun = median)) %>%
+  plot_ly(
+    x = ~borough,
+    y = ~score,
+    color = ~borough,
+    type = "box",
+    boxpoints = FALSE,
+    hovertemplate = paste(
+      "Borough: %{x}<br>Score: %{y}<extra></extra>"
+    )
+  ) %>%
+  layout(
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Inspection score"),
+    showlegend = FALSE
+  )
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+### Inspection grade counts
+
+```{r grade-bars}
+inspection_data %>%
+  count(borough, grade) %>%
+  plot_ly(
+    x = ~borough,
+    y = ~n,
+    color = ~grade,
+    type = "bar",
+    colors = c("A" = "#2E8B57", "B" = "#E6AB02", "C" = "#D95F02"),
+    hovertemplate = paste(
+      "Borough: %{x}<br>Grade: %{fullData.name}<br>Inspections: %{y}<extra></extra>"
+    )
+  ) %>%
+  layout(
+    barmode = "stack",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Number of inspections")
+  )
+```
+
+### Cuisine: inspection volume and A-grade share
+
+```{r cuisine-scatter}
+cuisine_summary %>%
+  plot_ly(
+    x = ~n_inspections,
+    y = ~pct_grade_a,
+    type = "scatter",
+    mode = "markers",
+    color = ~median_score,
+    size = ~n_inspections,
+    text = ~cuisine_description,
+    sizes = c(8, 28),
+    marker = list(opacity = 0.75),
+    hovertemplate = paste(
+      "Cuisine: %{text}<br>Inspections: %{x}<br>",
+      "Grade A: %{y:.1f}%<br>Median score: %{marker.color}<extra></extra>"
+    )
+  ) %>%
+  layout(
+    xaxis = list(title = "Number of inspections (cuisines with at least 100)"),
+    yaxis = list(title = "Inspections receiving grade A (%)")
+  )
+```
+
+### About these data
+Each point or count in this dashboard represents an inspection record after removing duplicate violation rows. Inspection scores are lower for better results; grades A, B, and C are shown. The cuisine comparison includes the 15 most frequently inspected cuisine categories among categories with at least 100 inspections.
