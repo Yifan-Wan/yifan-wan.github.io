@@ -11,12 +11,14 @@ output: html_document
 
 ## Bachelor's Degree — Franklin and Marshall College
 
-2021-2025 
+2021 - 2025 
+
 Mathematics and Economics
 
 ## Master's Degree - Columbia University
 
-2025-
+2025 -
+
 Biostatistics
 
 # Experience
@@ -28,6 +30,15 @@ Biostatistics
 - Screening Study for Senile Alzheimer's Disease: Collecting gait videos and MoCA cognitive scores from over 200 community-dwelling elderly individuals, extracting gait temporal characteristics, constructing a machine learning model, and quantifying the correlation between gait indicators and cognitive impairment;
 - Systematic Review and Meta-analysis: Independently completing literature screening and JBI methodological quality evaluation, relying on GRADE to complete evidence grading; Using Stata 17.0 to combine OR/RR/HR and 95% confidence intervals, selecting fixed/random effect models based on heterogeneity, and conducting subgroup analysis and one-by-one elimination sensitivity analysis
 
+## Algorithm Optimization Intern - Shanghai Xiaodu Technology Co., Ltd. Beijing Branch
+
+05/2024 - 08/2024
+
+- Participated in the optimization of the effective user identification algorithm for the fitness mirror, 
+independently processed nearly 100,000 frames of video skeleton temporal data, 
+and selected the bone point features highly correlated with the synchronization rate of the movement; 
+- Build and optimize the GBRank ranking model, converting the target recognition into a scenario-based human motion matching degree ranking problem, improving the recognition accuracy in multi-person interference scenarios by 11%, possessing the capabilities of large-scale data cleaning, feature engineering, and machine learning modeling.
+
 ## Research intern - China National Health Development Research Center
 
 07/2026 - 08/2026
@@ -38,6 +49,6 @@ Biostatistics
 
 # Skills
 
-**Programming:** R, SAS, Excel  
+**Programming:** R, SAS, Python  
 **Methods:** Data cleaning, descriptive statistics, regression analysis  
 **Research:** Literature review, survey data management  
