@@ -3,7 +3,7 @@ title: "NYC Restaurant Inspection Dashboard"
 author: "Yifan Wan"
 output:
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: scroll
 ---
 
@@ -17,6 +17,7 @@ library(plotly)
 
 ```{r data}
 data("rest_inspec")
+
 inspection_data = rest_inspec %>%
   rename(borough = boro) %>%
   filter(
@@ -31,6 +32,7 @@ inspection_data = rest_inspec %>%
   ) %>%
   distinct(camis, inspection_date, grade, score, .keep_all = TRUE) %>%
   filter(!is.na(score))
+
 cuisine_summary = inspection_data %>%
   filter(!is.na(cuisine_description), cuisine_description != "") %>%
   group_by(cuisine_description) %>%
@@ -44,8 +46,9 @@ cuisine_summary = inspection_data %>%
   slice_max(n_inspections, n = 15, with_ties = FALSE)
 ```
 
-Column {data-width=650}
+Row {data-height=520}
 -----------------------------------------------------------------------
+
 ### Inspection scores by borough
 
 ```{r score-boxplot}
@@ -57,19 +60,17 @@ inspection_data %>%
     color = ~borough,
     type = "box",
     boxpoints = FALSE,
-    hovertemplate = paste(
-      "Borough: %{x}<br>Score: %{y}<extra></extra>"
-    )
+    hovertemplate = "Borough: %{x}<br>Score: %{y}<extra></extra>"
   ) %>%
   layout(
-    xaxis = list(title = "Borough"),
-    yaxis = list(title = "Inspection score"),
+    height = 420,
+    margin = list(l = 65, r = 20, t = 25, b = 85),
+    xaxis = list(title = "Borough", automargin = TRUE),
+    yaxis = list(title = "Inspection score", automargin = TRUE),
     showlegend = FALSE
   )
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
 ### Inspection grade counts
 
 ```{r grade-bars}
@@ -82,15 +83,21 @@ inspection_data %>%
     type = "bar",
     colors = c("A" = "#2E8B57", "B" = "#E6AB02", "C" = "#D95F02"),
     hovertemplate = paste(
-      "Borough: %{x}<br>Grade: %{fullData.name}<br>Inspections: %{y}<extra></extra>"
+      "Borough: %{x}<br>Grade: %{fullData.name}<br>",
+      "Inspections: %{y}<extra></extra>"
     )
   ) %>%
   layout(
+    height = 420,
+    margin = list(l = 70, r = 20, t = 25, b = 90),
     barmode = "stack",
-    xaxis = list(title = "Borough"),
-    yaxis = list(title = "Number of inspections")
+    xaxis = list(title = "Borough", automargin = TRUE, tickangle = -30),
+    yaxis = list(title = "Number of inspections", automargin = TRUE)
   )
 ```
+
+Row {data-height=520}
+-----------------------------------------------------------------------
 
 ### Cuisine: inspection volume and A-grade share
 
@@ -102,18 +109,23 @@ cuisine_summary %>%
     type = "scatter",
     mode = "markers",
     color = ~median_score,
-    size = ~n_inspections,
     text = ~cuisine_description,
-    sizes = c(8, 28),
-    marker = list(opacity = 0.75),
+    marker = list(
+      opacity = 0.8,
+      colorbar = list(title = "Median score")
+    ),
     hovertemplate = paste(
-      "Cuisine: %{text}<br>Inspections: %{x}<br>",
-      "Grade A: %{y:.1f}%<br>Median score: %{marker.color}<extra></extra>"
+      "Cuisine: %{text}<br>",
+      "Inspections: %{x}<br>",
+      "Grade A: %{y:.1f}%<br>",
+      "Median score: %{marker.color:.1f}<extra></extra>"
     )
   ) %>%
   layout(
-    xaxis = list(title = "Number of inspections (cuisines with at least 100)"),
-    yaxis = list(title = "Inspections receiving grade A (%)")
+    height = 420,
+    margin = list(l = 80, r = 100, t = 25, b = 80),
+    xaxis = list(title = "Inspection count", automargin = TRUE),
+    yaxis = list(title = "Inspections receiving grade A (%)", automargin = TRUE)
   )
 ```
 
