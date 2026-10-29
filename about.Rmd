@@ -1,0 +1,43 @@
+---
+title: "Academic and Professional Experience"
+output: html_document
+---
+
+[Home](index.html) |
+[GitHub](https://github.com/Yifan-Wan) |
+[Email](mailto:yw4657@cumc.columbia.edu) 
+
+# Education
+
+## Bachelor's Degree — Franklin and Marshall College
+
+2021-2025 
+Mathematics and Economics
+
+## Master's Degree - Columbia University
+
+2025-
+Biostatistics
+
+# Experience
+
+## Research intern — Peking University Health Science Center
+
+05/2023 - 08/2023
+
+- Screening Study for Senile Alzheimer's Disease: Collecting gait videos and MoCA cognitive scores from over 200 community-dwelling elderly individuals, extracting gait temporal characteristics, constructing a machine learning model, and quantifying the correlation between gait indicators and cognitive impairment;
+- Systematic Review and Meta-analysis: Independently completing literature screening and JBI methodological quality evaluation, relying on GRADE to complete evidence grading; Using Stata 17.0 to combine OR/RR/HR and 95% confidence intervals, selecting fixed/random effect models based on heterogeneity, and conducting subgroup analysis and one-by-one elimination sensitivity analysis
+
+## Research intern - China National Health Development Research Center
+
+07/2026 - 08/2026
+
+- Health economic assessment of coronary heart disease: Based on the Markov decision model, calculating the long-term cost-effectiveness ratio and net monetary gain of PCI, CABG, and intensive lipid-lowering regimens, providing quantitative evidence for the intervention standards of secondary prevention for coronary heart disease;
+- Large-sample Meta-integration study: Integrating clinical data of 122,485 patients with coronary heart disease, conducting stratified analysis of treatment benefits differences in high-infarction and high-blooding-risk populations, identifying differentiated intervention targets;
+- Medical AI policy assessment: Constructing a six-dimensional multi-criteria scoring model, horizontally comparing the adaptability of medical AI pilot projects in 6 cities, outputting quantitative radar charts and comprehensive ranking reports, supporting the formulation of health digitalization policies.
+
+# Skills
+
+**Programming:** R, SAS, Excel  
+**Methods:** Data cleaning, descriptive statistics, regression analysis  
+**Research:** Literature review, survey data management  
