@@ -1,0 +1,26 @@
+---
+title: "Yifan Wan | Home"
+output: html_document
+---
+
+# Introduction
+
+Hello, I'm Yifan Wan. I am a second-year MPH student at the Mailman School of Public Health of Columbia University.
+
+## About me
+
+Currently, I am pursuing a Master's degree in Public Health at Columbia University, 
+focusing on biostatistics and epidemiology. My research interests lie in 
+the application of quantitative research methods in clinical medicine and public health. 
+Previously, I have participated in related studies such as individualized intervention strategies 
+for chronic diseases and cost-benefit analysis of healthcare interventions, 
+and have accumulated certain practical experience in the medical field. 
+In the future, I hope to further explore clinical data analysis, disease risk prediction, 
+and real-world research, and utilize data-driven methods to provide scientific basis for disease prevention, 
+clinical decision-making, and healthcare policies.
+
+## Navigation
+
+[Academic and professional experience](about.html) |
+[GitHub](https://github.com/Yifan-Wan) |
+[Email](mailto:yw4657@cumc.columbia.edu) 
